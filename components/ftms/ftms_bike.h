@@ -3,7 +3,7 @@
 #include "esphome/core/component.h"
 
 namespace esphome {
-namespace ftms {
+namespace ftms_bike {
 
 class FTMSBike : public Component {
  public:
@@ -13,5 +13,5 @@ class FTMSBike : public Component {
 };
 
 
-}  // namespace ftms
+}  // namespace ftms_bike
 }  // namespace esphome
