@@ -1,8 +1,8 @@
 #include "esphome/core/log.h"
-#include "ftms.h"
+#include "ftms_bike.h"
 
 namespace esphome {
-namespace ftms {
+namespace ftms_bike {
 
 static const char *TAG = "ftms_bike";
 
@@ -19,5 +19,5 @@ void FTMSBike::dump_config(){
 }
 
 
-}  // namespace ftms
+}  // namespace ftms_bike
 }  // namespace esphome
