@@ -3,15 +3,14 @@
 #include "esphome/core/component.h"
 
 namespace esphome {
-namespace ftms_bike {
+namespace ftms {
 
-class FTMSBike : public Component {
+class FTMS : public Component {
  public:
   void setup() override;
   void loop() override;
   void dump_config() override;
 };
 
-
-}  // namespace ftms_bike
+}  // namespace ftms
 }  // namespace esphome
