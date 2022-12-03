@@ -4,18 +4,18 @@
 namespace esphome {
 namespace ftms {
 
-static const char *TAG = "ftms.component";
+static const char *TAG = "ftms_bike";
 
-void EmptyComponent::setup() {
-    ESP_LOGD(TAG, "FTMS component setup");
+void FTMSBike::setup() {
+    ESP_LOGD(TAG, "FTMS Bike component setup");
 }
 
-void EmptyComponent::loop() {
+void FTMSBike::loop() {
 
 }
 
-void EmptyComponent::dump_config(){
-    ESP_LOGCONFIG(TAG, "FTMS component dumped");
+void FTMSBike::dump_config(){
+    ESP_LOGCONFIG(TAG, "FTMS Bike component dumped");
 }
 
 
