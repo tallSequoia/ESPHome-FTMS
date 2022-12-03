@@ -5,7 +5,7 @@
 namespace esphome {
 namespace ftms {
 
-class EmptyComponent : public Component {
+class FTMSBike : public Component {
  public:
   void setup() override;
   void loop() override;
