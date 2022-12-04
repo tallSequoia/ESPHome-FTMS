@@ -5,7 +5,7 @@
 namespace esphome {
 namespace ftms {
 
-class FTMS : public Sensor, public PollingComponent {
+class FTMS : public sensor::Sensor, public PollingComponent {
  public:
   void setup() override;
   void loop() override;
