@@ -7,13 +7,6 @@
 
 #ifdef USE_ESP32
 
-#include <nvs_flash.h>
-#include <freertos/FreeRTOSConfig.h>
-#include <esp_bt_main.h>
-#include <esp_bt.h>
-#include <freertos/task.h>
-#include <esp_gap_ble_api.h>
-
 namespace ftms {
 namespace bike_server {
 
@@ -50,7 +43,7 @@ void FTMSBikeServer::setup() {
   advertising->setScanResponse(true);
   advertising->setMinPreferred(0x06);
 
-  BLEDevice::startAdvertising();
+  advertising->start();
 }
 
 void FTMSBikeServer::loop() {
