@@ -1,4 +1,4 @@
-#include "ftms.h"
+#include "ftms_bike_server.h"
 #include "esphome/core/log.h"
 #include "esphome/core/application.h"
 #include "esphome/core/version.h"
