@@ -1,9 +1,18 @@
 #include "ftms_bike_server.h"
+
+#include "esphome/components/esp32_ble/ble.h"
 #include "esphome/core/log.h"
 #include "esphome/core/application.h"
 #include "esphome/core/version.h"
 
-#ifdef ARDUINO_ARCH_ESP32
+#ifdef USE_ESP32
+
+#include <nvs_flash.h>
+#include <freertos/FreeRTOSConfig.h>
+#include <esp_bt_main.h>
+#include <esp_bt.h>
+#include <freertos/task.h>
+#include <esp_gap_ble_api.h>
 
 namespace ftms {
 namespace bike_server {
