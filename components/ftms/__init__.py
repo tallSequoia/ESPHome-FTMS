@@ -4,7 +4,7 @@ from esphome.const import CONF_ID, ESP_PLATFORM_ESP32
 from esphome.core import coroutine_with_priority
 
 ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
-CODEOWNERS = ['@jesserockz']
+CODEOWNERS = ['@tallSequoia']
 
 ftms_bike_server_ns = cg.esphome_ns.namespace('ftms_bike_server')
 FTMSBikeServer = ftms_bike_server_ns.class_('FTMSBikeServer', cg.Component)
