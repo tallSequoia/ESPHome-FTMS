@@ -1,9 +1,8 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.const import CONF_ID, ESP_PLATFORM_ESP32
+from esphome.const import CONF_ID
 from esphome.core import coroutine_with_priority
 
-ESP_PLATFORMS = [ESP_PLATFORM_ESP32]
 CODEOWNERS = ['@tallSequoia']
 
 ftms_bike_server_ns = cg.esphome_ns.namespace('ftms_bike_server')
