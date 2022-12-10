@@ -11,12 +11,14 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
+// Standard logging tag
 static const char *const TAG = "esp32_ftms_bike";
 
 // FTMS Service UUIDs (BLE spec)
-#define FTMS_SERVICE_UUID "1826"
-#define FTMS_FEATURES_CHARACTERISTIC_UUID "2ACC"
-#define INDOOR_BIKE_DATA_CHARACTERISTIC_UUID "2AD2"
+static const char *const MANUFACTURER_NAME = "Bikey McBikeFace";
+static const char *const FTMS_SERVICE_UUID = "1826";
+static const char *const FTMS_FEATURES_CHARACTERISTIC_UUID = "2ACC";
+static const char *const INDOOR_BIKE_DATA_CHARACTERISTIC_UUID = "2AD2";
 
 
 // Constants that could be set from other sources
@@ -41,6 +43,8 @@ void ESP32FtmsBikeComponent::setup() {
   ESP_LOGD(TAG, "Setup starting");
 
   this->service_ = global_ble_server->create_service(FTMS_SERVICE_UUID, true);
+
+  this->service_->set_manufacturer(MANUFACTURER_NAME);
 
   this->featuresCharacteristic_ = this->service_->create_characteristic(
     FTMS_FEATURES_CHARACTERISTIC_UUID, 
@@ -70,6 +74,10 @@ void ESP32FtmsBikeComponent::setup() {
 }
 
 void ESP32FtmsBikeComponent::loop() {
+  if (this->state_ != State.RUNNING) {
+    ESP_LOGD(TAG, "Not yet running standard state");    
+  }
+
 }
 
 
