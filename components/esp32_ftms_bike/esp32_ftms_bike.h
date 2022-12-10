@@ -23,20 +23,15 @@ class ESP32FtmsBikeComponent : public Component, public BLEServiceComponent {
   void loop() override;
   void setup() override;
   void setup_characteristics();
+  void on_client_connect() override;
   void on_client_disconnect() override;
 
   float get_setup_priority() const override;
-  void start() override;
-  void stop() override;
-  bool is_active() const { return this->state_ != improv::STATE_STOPPED; }
 
   void set_authorizer(binary_sensor::BinarySensor *authorizer) { this->authorizer_ = authorizer; }
   void set_status_indicator(output::BinaryOutput *status_indicator) { this->status_indicator_ = status_indicator; }
-  void set_identify_duration(uint32_t identify_duration) { this->identify_duration_ = identify_duration; }
-  void set_authorized_duration(uint32_t authorized_duration) { this->authorized_duration_ = authorized_duration; }
 
  protected:
-  bool should_start_{false};
   bool setup_complete_{false};
 
   uint32_t identify_start_{0};
@@ -48,28 +43,15 @@ class ESP32FtmsBikeComponent : public Component, public BLEServiceComponent {
   wifi::WiFiAP connecting_sta_;
 
   std::shared_ptr<BLEService> service_;
-  BLECharacteristic *status_;
-  BLECharacteristic *error_;
-  BLECharacteristic *rpc_;
-  BLECharacteristic *rpc_response_;
-  BLECharacteristic *capabilities_;
+  BLECharacteristic *featuresCharacteristic_;
+  BLECharacteristic *bikeDataCharacteristic_;
 
   binary_sensor::BinarySensor *authorizer_{nullptr};
   output::BinaryOutput *status_indicator_{nullptr};
-
-  improv::State state_{improv::STATE_STOPPED};
-  improv::Error error_state_{improv::ERROR_NONE};
-
-  void set_state_(improv::State state);
-  void set_error_(improv::Error error);
-  void send_response_(std::vector<uint8_t> &response);
-  void process_incoming_data_();
-  void on_wifi_connect_timeout_();
-  bool check_identify_();
 };
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-extern ESP32FtmsBikeComponent *global_improv_component;
+extern ESP32FtmsBikeComponent *global_ftms_bike_component;
 
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
