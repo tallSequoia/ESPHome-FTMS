@@ -74,7 +74,7 @@ void ESP32FtmsBikeComponent::setup() {
 }
 
 void ESP32FtmsBikeComponent::loop() {
-  if (this->state_ != State.RUNNING) {
+  if (this->state_ != RUNNING) {
     ESP_LOGD(TAG, "Not yet running standard state");    
   }
 
