@@ -35,7 +35,11 @@ static const char *const TAG = "esp32_ftms_bike";
 
 ESP32FtmsBikeComponent::ESP32FtmsBikeComponent() { global_ftms_bike_component = this; }
 
+float ESP32FtmsBikeComponent::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
+
 void ESP32FtmsBikeComponent::setup() {
+  ESP_LOGD(TAG, "Setup starting");
+
   this->service_ = global_ble_server->create_service(FTMS_SERVICE_UUID, true);
 
   this->featuresCharacteristic_ = this->service_->create_characteristic(
@@ -61,22 +65,34 @@ void ESP32FtmsBikeComponent::setup() {
 */
 
   this->service_->start();
+
+  ESP_LOGD(TAG, "Setup complete");
 }
 
 void ESP32FtmsBikeComponent::loop() {
 }
 
-float ESP32FtmsBikeComponent::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
+
+void ESP32FtmsBikeComponent::start() {
+  ESP_LOGD(TAG, "Start");
+}
+
+void ESP32FtmsBikeComponent::stop() {
+  ESP_LOGD(TAG, "Stop");
+}
+
 
 void ESP32FtmsBikeComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "ESP32 FTMS Bike:");
 }
 
-void ESP32FtmsBikeComponent::on_client_disconnect() { 
-};
+void ESP32FtmsBikeComponent::on_client_disconnect() {
+  ESP_LOGD(TAG, "Client disconnect");
+}
 
 void ESP32FtmsBikeComponent::on_client_connect() {
-};
+  ESP_LOGD(TAG, "Client connect");
+}
 
 
 ESP32FtmsBikeComponent *global_ftms_bike_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
