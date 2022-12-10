@@ -17,7 +17,7 @@ namespace esp32_ftms_bike {
 using namespace esp32_ble_server;
 
 
-class ESP32FtmsBikeComponent : public BLEServiceComponent {
+class ESP32FtmsBikeComponent : public Component, public BLEServiceComponent {
  public:
   ESP32FtmsBikeComponent();
   void setup() override;
