@@ -72,9 +72,11 @@ void ESP32FtmsBikeComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "ESP32 FTMS Bike:");
 }
 
-void ESP32FtmsBikeComponent::on_client_disconnect() { this->set_error_(improv::ERROR_NONE); };
+void ESP32FtmsBikeComponent::on_client_disconnect() { 
+};
 
-void ESP32FtmsBikeComponent::on_client_connect() { this->set_error_(improv::ERROR_NONE); };
+void ESP32FtmsBikeComponent::on_client_connect() {
+};
 
 
 ESP32FtmsBikeComponent *global_ftms_bike_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
