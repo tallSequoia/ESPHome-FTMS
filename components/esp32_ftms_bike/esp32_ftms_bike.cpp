@@ -1,4 +1,4 @@
-#include "esp32_ftms_bike_component.h"
+#include "esp32_ftms_bike.h"
 
 #include "esphome/components/esp32_ble/ble.h"
 #include "esphome/components/esp32_ble_server/ble_2902.h"
