@@ -5,7 +5,6 @@
 #include "esphome/core/application.h"
 #include "esphome/core/log.h"
 
-
 #ifdef USE_ESP32
 
 namespace esphome {
@@ -35,11 +34,11 @@ static const char *const INDOOR_BIKE_DATA_CHARACTERISTIC_UUID = "2AD2";
 #define ELEVATION 100             // Meters
 
 
-ESP32FtmsBikeComponent::ESP32FtmsBikeComponent() { global_ftms_bike_component = this; }
+ESP32FtmsBikeComponent() { global_ftms_bike_component = this; }
 
-float ESP32FtmsBikeComponent::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
+float get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
 
-void ESP32FtmsBikeComponent::setup() {
+void setup() {
   ESP_LOGD(TAG, "Setup starting");
 
   this->service_ = global_ble_server->create_service(FTMS_SERVICE_UUID, true);
@@ -71,74 +70,28 @@ void ESP32FtmsBikeComponent::setup() {
   ESP_LOGD(TAG, "Setup complete");
 }
 
-void ESP32FtmsBikeComponent::loop() {
-  if (this->state_ != RUNNING) {
-    ESP_LOGD(TAG, "Not yet running standard state");    
-    //this->service_->start();
-  }
-
- switch (this->state_) {
-     case RUNNING:
-       return;
- 
-     case INIT: {
-       esp_err_t err = esp_ble_gatts_app_register(0);
-       if (err != ESP_OK) {
-         ESP_LOGE(TAG, "esp_ble_gatts_app_register failed: %d", err);
-         this->mark_failed();
-         return;
-       }
-       this->state_ = REGISTERING;
-       break;
-     }
-     case REGISTERING: {
-       if (this->registered_) {
-         this->device_information_service_ = this->create_service(DEVICE_INFORMATION_SERVICE_UUID);
- 
-         this->create_device_characteristics_();
- 
-         this->state_ = STARTING_SERVICE;
-       }
-       break;
-     }
-     case STARTING_SERVICE: {
-       if (!this->device_information_service_->is_created()) {
-         break;
-       }
-       if (this->device_information_service_->is_running()) {
-         this->state_ = RUNNING;
-         this->can_proceed_ = true;
-         ESP_LOGD(TAG, "BLE server setup successfully");
-       } else if (!this->device_information_service_->is_starting()) {
-         this->device_information_service_->start();
-       }
-       break;
-     }
-   }
+void loop() {
 }
 
-
-void ESP32FtmsBikeComponent::start() {
+void start() {
   ESP_LOGD(TAG, "Start");
 }
 
-void ESP32FtmsBikeComponent::stop() {
+void stop() {
   ESP_LOGD(TAG, "Stop");
 }
 
-
-void ESP32FtmsBikeComponent::dump_config() {
+void dump_config() {
   ESP_LOGCONFIG(TAG, "ESP32 FTMS Bike:");
 }
 
-void ESP32FtmsBikeComponent::on_client_disconnect() {
+void on_client_disconnect() {
   ESP_LOGD(TAG, "Client disconnect");
 }
 
-void ESP32FtmsBikeComponent::on_client_connect() {
+void on_client_connect() {
   ESP_LOGD(TAG, "Client connect");
 }
-
 
 ESP32FtmsBikeComponent *global_ftms_bike_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
