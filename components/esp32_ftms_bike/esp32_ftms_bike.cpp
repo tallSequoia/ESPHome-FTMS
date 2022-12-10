@@ -68,16 +68,53 @@ void ESP32FtmsBikeComponent::setup() {
   pAdvertising->setMinPreferred(0x12);
 */
 
-  this->service_->start();
-
   ESP_LOGD(TAG, "Setup complete");
 }
 
 void ESP32FtmsBikeComponent::loop() {
   if (this->state_ != RUNNING) {
     ESP_LOGD(TAG, "Not yet running standard state");    
+    //this->service_->start();
   }
 
+ switch (this->state_) {
+     case RUNNING:
+       return;
+ 
+     case INIT: {
+       esp_err_t err = esp_ble_gatts_app_register(0);
+       if (err != ESP_OK) {
+         ESP_LOGE(TAG, "esp_ble_gatts_app_register failed: %d", err);
+         this->mark_failed();
+         return;
+       }
+       this->state_ = REGISTERING;
+       break;
+     }
+     case REGISTERING: {
+       if (this->registered_) {
+         this->device_information_service_ = this->create_service(DEVICE_INFORMATION_SERVICE_UUID);
+ 
+         this->create_device_characteristics_();
+ 
+         this->state_ = STARTING_SERVICE;
+       }
+       break;
+     }
+     case STARTING_SERVICE: {
+       if (!this->device_information_service_->is_created()) {
+         break;
+       }
+       if (this->device_information_service_->is_running()) {
+         this->state_ = RUNNING;
+         this->can_proceed_ = true;
+         ESP_LOGD(TAG, "BLE server setup successfully");
+       } else if (!this->device_information_service_->is_starting()) {
+         this->device_information_service_->start();
+       }
+       break;
+     }
+   }
 }
 
 
