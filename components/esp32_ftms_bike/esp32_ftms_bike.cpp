@@ -27,23 +27,23 @@ static const char *const INDOOR_BIKE_DATA_CHARACTERISTIC_UUID = "2AD2";
 
 #define JOULE_TO_KCAL 0.238902957619
 
-#define WHEEL_RADIUS 0.0003682    // in km 29"Wheel
-#define RIDER_WEIGHT 72.6         //165 lbs
-#define BIKE_WEIGHT 11.1          //Cannondale road bike
-#define TEMPERATURE_EV 15.6       // 60 degrees farenheit
-#define ELEVATION 100             // Meters
+#define WHEEL_RADIUS 0.0003682    // in km for a 29" wheel
+#define RIDER_WEIGHT 72.6         // kg
+#define BIKE_WEIGHT 11.1          // kg of the Cannondale road bike
+#define TEMPERATURE_EV 15.6       // oC
+#define ELEVATION 100             // m
 
 
-ESP32FtmsBikeComponent() { global_ftms_bike_component = this; }
+ESP32FtmsBikeComponent::ESP32FtmsBikeComponent() { global_ftms_bike_component = this; }
 
-float get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
+float ESP32FtmsBikeComponent::get_setup_priority() const { return setup_priority::AFTER_BLUETOOTH; }
 
-void setup() {
+void ESP32FtmsBikeComponent::setup() {
   ESP_LOGD(TAG, "Setup starting");
 
   this->service_ = global_ble_server->create_service(FTMS_SERVICE_UUID, true);
 
-  this->service_->set_manufacturer(MANUFACTURER_NAME);
+//  this->service_->set_manufacturer(MANUFACTURER_NAME);
 
   this->featuresCharacteristic_ = this->service_->create_characteristic(
     FTMS_FEATURES_CHARACTERISTIC_UUID, 
@@ -70,28 +70,31 @@ void setup() {
   ESP_LOGD(TAG, "Setup complete");
 }
 
-void loop() {
+void ESP32FtmsBikeComponent::loop() {
 }
 
-void start() {
+
+void ESP32FtmsBikeComponent::start() {
   ESP_LOGD(TAG, "Start");
 }
 
-void stop() {
+void ESP32FtmsBikeComponent::stop() {
   ESP_LOGD(TAG, "Stop");
 }
 
-void dump_config() {
+
+void ESP32FtmsBikeComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "ESP32 FTMS Bike:");
 }
 
-void on_client_disconnect() {
+void ESP32FtmsBikeComponent::on_client_disconnect() {
   ESP_LOGD(TAG, "Client disconnect");
 }
 
-void on_client_connect() {
+void ESP32FtmsBikeComponent::on_client_connect() {
   ESP_LOGD(TAG, "Client connect");
 }
+
 
 ESP32FtmsBikeComponent *global_ftms_bike_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
