@@ -11,8 +11,6 @@
 
 #ifdef USE_ESP32
 
-#include <esp32_ftms_bike.h>
-
 namespace esphome {
 namespace esp32_ftms_bike {
 
