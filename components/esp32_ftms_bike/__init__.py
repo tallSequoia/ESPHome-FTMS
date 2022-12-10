@@ -9,12 +9,9 @@ CODEOWNERS = ["@tallsequoia"]
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
 DEPENDENCIES = ["wifi", "esp32"]
 
-CONF_AUTHORIZED_DURATION = "authorized_duration"
-CONF_AUTHORIZER = "authorizer"
 CONF_BLE_SERVER_ID = "ble_server_id"
-CONF_IDENTIFY_DURATION = "identify_duration"
+CONF_AUTHORIZER = "authorizer"
 CONF_STATUS_INDICATOR = "status_indicator"
-CONF_WIFI_TIMEOUT = "wifi_timeout"
 
 esp32_ftms_bike_ns = cg.esphome_ns.namespace("esp32_ftms_bike")
 ESP32FtmsBikeComponent = esp32_ftms_bike_ns.class_(
@@ -38,12 +35,12 @@ CONFIG_SCHEMA = cv.Schema(
             validate_none_, cv.use_id(binary_sensor.BinarySensor)
         ),
         cv.Optional(CONF_STATUS_INDICATOR): cv.use_id(output.BinaryOutput),
-        cv.Optional(
-            CONF_IDENTIFY_DURATION, default="10s"
-        ): cv.positive_time_period_milliseconds,
-        cv.Optional(
-            CONF_AUTHORIZED_DURATION, default="1min"
-        ): cv.positive_time_period_milliseconds,
+#        cv.Optional(
+#            CONF_IDENTIFY_DURATION, default="10s"
+#        ): cv.positive_time_period_milliseconds,
+#        cv.Optional(
+#            CONF_AUTHORIZED_DURATION, default="1min"
+#        ): cv.positive_time_period_milliseconds,
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
@@ -58,8 +55,8 @@ async def to_code(config):
     cg.add_define("USE_FTMS_BIKE")
 #    cg.add_library("esphome/Improv", "1.2.1")
 
-    cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
-    cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))
+#    cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
+#    cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))
 
     if CONF_AUTHORIZER in config and config[CONF_AUTHORIZER] is not None:
         activator = await cg.get_variable(config[CONF_AUTHORIZER])
