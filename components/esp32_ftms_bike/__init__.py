@@ -1,67 +1,44 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.components import binary_sensor, output, esp32_ble_server
-from esphome.const import CONF_ID
+from esphome.const import CONF_ID, CONF_MODEL
+from esphome.components import esp32_ble
+from esphome.core import CORE
+from esphome.components.esp32 import add_idf_sdkconfig_option
 
-
-AUTO_LOAD = ["binary_sensor", "output", "esp32_ble_server"]
-CODEOWNERS = ["@tallsequoia"]
+AUTO_LOAD = ["esp32_ble"]
+CODEOWNERS = ["@jesserockz"]
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
-DEPENDENCIES = ["wifi", "esp32"]
+DEPENDENCIES = ["esp32"]
 
-CONF_BLE_SERVER_ID = "ble_server_id"
-CONF_AUTHORIZER = "authorizer"
-CONF_STATUS_INDICATOR = "status_indicator"
+CONF_MANUFACTURER = "manufacturer"
+CONF_BLE_ID = "ble_id"
 
 esp32_ftms_bike_ns = cg.esphome_ns.namespace("esp32_ftms_bike")
-ESP32FtmsBikeComponent = esp32_ftms_bike_ns.class_(
-    "ESP32FtmsBikeComponent", cg.Component, esp32_ble_server.BLEServiceComponent
-)
-
-
-def validate_none_(value):
-    if value in ("none", "None"):
-        return None
-    if cv.boolean(value) is False:
-        return None
-    raise cv.Invalid("Must be none")
+FTMSBike = esp32_ftms_bike_ns.class_("FTMSBike", cg.Component)
+BLEServiceComponent = esp32_ftms_bike_ns.class_("BLEServiceComponent")
 
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(ESP32FtmsBikeComponent),
-        cv.GenerateID(CONF_BLE_SERVER_ID): cv.use_id(esp32_ble_server.BLEServer),
-        cv.Required(CONF_AUTHORIZER): cv.Any(
-            validate_none_, cv.use_id(binary_sensor.BinarySensor)
-        ),
-        cv.Optional(CONF_STATUS_INDICATOR): cv.use_id(output.BinaryOutput),
-#        cv.Optional(
-#            CONF_IDENTIFY_DURATION, default="10s"
-#        ): cv.positive_time_period_milliseconds,
-#        cv.Optional(
-#            CONF_AUTHORIZED_DURATION, default="1min"
-#        ): cv.positive_time_period_milliseconds,
+        cv.GenerateID(): cv.declare_id(FTMSBike),
+        cv.GenerateID(CONF_BLE_ID): cv.use_id(esp32_ble.ESP32BLE),
+        cv.Optional(CONF_MANUFACTURER, default="ESPHome"): cv.string,
+        cv.Optional(CONF_MODEL): cv.string,
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
 
 async def to_code(config):
+    parent = await cg.get_variable(config[CONF_BLE_ID])
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
 
-    ble_server = await cg.get_variable(config[CONF_BLE_SERVER_ID])
-    cg.add(ble_server.register_service_component(var))
+    cg.add(var.set_manufacturer(config[CONF_MANUFACTURER]))
+    if CONF_MODEL in config:
+        cg.add(var.set_model(config[CONF_MODEL]))
+    cg.add_define("USE_esp32_ftms_bike")
 
-    cg.add_define("USE_FTMS_BIKE")
-#    cg.add_library("esphome/Improv", "1.2.1")
+    cg.add(parent.set_server(var))
 
-#    cg.add(var.set_identify_duration(config[CONF_IDENTIFY_DURATION]))
-#    cg.add(var.set_authorized_duration(config[CONF_AUTHORIZED_DURATION]))
-
-    if CONF_AUTHORIZER in config and config[CONF_AUTHORIZER] is not None:
-        activator = await cg.get_variable(config[CONF_AUTHORIZER])
-        cg.add(var.set_authorizer(activator))
-
-    if CONF_STATUS_INDICATOR in config:
-        status_indicator = await cg.get_variable(config[CONF_STATUS_INDICATOR])
-        cg.add(var.set_status_indicator(status_indicator))
+    if CORE.using_esp_idf:
+        add_idf_sdkconfig_option("CONFIG_BT_ENABLED", True)
