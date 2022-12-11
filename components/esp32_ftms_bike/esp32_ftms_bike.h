@@ -31,7 +31,7 @@ class BLEServiceComponent {
    virtual void stop();
 };
 
-class FTMSBike : public Component {
+class FTMSBike : public Component, public BLEServiceComponent {
   public:
    void setup() override;
    void loop() override;
