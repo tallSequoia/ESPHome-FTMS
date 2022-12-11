@@ -41,8 +41,8 @@ class FTMSBike : public Component, public BLEServiceComponent {
 
    void teardown();
 
-  bool has_server() override { return this->server_ != nullptr; }
-  bool has_client() override { return false; }
+  bool has_server() { return this->server_ != nullptr; }
+  bool has_client() { return false; }
 
   void set_server(esp32_ftms_bike::FTMSBike *server) { this->server_ = server; }
 
