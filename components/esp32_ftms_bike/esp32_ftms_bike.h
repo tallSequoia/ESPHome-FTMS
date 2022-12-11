@@ -41,18 +41,10 @@ class FTMSBike : public Component, public BLEServiceComponent {
 
    void teardown();
 
-  bool has_server() {
-#ifdef USE_ESP32_BLE_SERVER
-    return this->server_ != nullptr;
-#else
-    return false;
-#endif
-  }
-  bool has_client() { return false; }
+  bool has_server() override { return this->server_ != nullptr; }
+  bool has_client() override { return false; }
 
-#ifdef USE_ESP32_BLE_SERVER
   void set_server(esp32_ftms_bike::FTMSBike *server) { this->server_ = server; }
-#endif
 
    void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
    void set_model(const std::string &model) { this->model_ = model; }
@@ -94,16 +86,14 @@ class FTMSBike : public Component, public BLEServiceComponent {
 
    std::vector<BLEServiceComponent *> service_components_;
 
-#ifdef USE_ESP32_BLE_SERVER
   esp32_ftms_bike::FTMSBike *server_{nullptr};
-#endif
 
-   enum State : uint8_t {
-     INIT = 0x00,
-     REGISTERING,
-     STARTING_SERVICE,
-     RUNNING,
-   } state_{INIT};
+  enum State : uint8_t {
+    INIT = 0x00,
+    REGISTERING,
+    STARTING_SERVICE,
+    RUNNING,
+  } state_{INIT};
 };
 
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
