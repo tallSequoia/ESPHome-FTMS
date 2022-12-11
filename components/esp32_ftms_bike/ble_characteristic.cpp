@@ -7,9 +7,9 @@
 #ifdef USE_ESP32
 
 namespace esphome {
-namespace esp32_ble_server {
+namespace esp32_ftms_bike {
 
-static const char *const TAG = "esp32_ble_server.characteristic";
+static const char *const TAG = "esp32_ftms_bike.characteristic";
 
 BLECharacteristic::BLECharacteristic(const ESPBTUUID uuid, uint32_t properties) : uuid_(uuid) {
   this->set_value_lock_ = xSemaphoreCreateBinary();
@@ -306,7 +306,7 @@ void BLECharacteristic::gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt
   }
 }
 
-}  // namespace esp32_ble_server
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif

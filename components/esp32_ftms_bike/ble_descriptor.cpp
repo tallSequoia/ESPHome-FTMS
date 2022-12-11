@@ -8,9 +8,9 @@
 #ifdef USE_ESP32
 
 namespace esphome {
-namespace esp32_ble_server {
+namespace esp32_ftms_bike {
 
-static const char *const TAG = "esp32_ble_server.descriptor";
+static const char *const TAG = "esp32_ftms_bike.descriptor";
 
 BLEDescriptor::BLEDescriptor(ESPBTUUID uuid, uint16_t max_len) {
   this->uuid_ = uuid;
@@ -72,7 +72,7 @@ void BLEDescriptor::gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_
   }
 }
 
-}  // namespace esp32_ble_server
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif

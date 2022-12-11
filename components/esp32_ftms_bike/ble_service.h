@@ -14,7 +14,7 @@
 #include <esp_bt_defs.h>
 
 namespace esphome {
-namespace esp32_ble_server {
+namespace esp32_ftms_bike {
 
 class BLEServer;
 
@@ -77,7 +77,7 @@ class BLEService {
   } running_state_{STOPPED};
 };
 
-}  // namespace esp32_ble_server
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif

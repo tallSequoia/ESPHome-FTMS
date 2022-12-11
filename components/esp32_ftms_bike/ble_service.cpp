@@ -5,9 +5,9 @@
 #ifdef USE_ESP32
 
 namespace esphome {
-namespace esp32_ble_server {
+namespace esp32_ftms_bike {
 
-static const char *const TAG = "esp32_ble_server.service";
+static const char *const TAG = "esp32_ftms_bike.service";
 
 BLEService::BLEService(ESPBTUUID uuid, uint16_t num_handles, uint8_t inst_id)
     : uuid_(uuid), num_handles_(num_handles), inst_id_(inst_id) {}
@@ -138,7 +138,7 @@ void BLEService::gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t g
   }
 }
 
-}  // namespace esp32_ble_server
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif

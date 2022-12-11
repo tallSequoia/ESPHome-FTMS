@@ -24,7 +24,6 @@ static const uint16_t MODEL_UUID = 0x2A24;
 static const uint16_t VERSION_UUID = 0x2A26;
 static const uint16_t MANUFACTURER_UUID = 0x2A29;
 
- 
 void FTMSBike::setup() {
   if (this->is_failed()) {
     ESP_LOGE(TAG, "FTMS Bike was marked failed by ESP32BLE");
@@ -113,7 +112,7 @@ std::shared_ptr<BLEService> FTMSBike::create_service(const std::string &uuid, bo
 }
 
 std::shared_ptr<BLEService> FTMSBike::create_service(ESPBTUUID uuid, bool advertise, uint16_t num_handles,
- uint8_t inst_id) {
+                                                      uint8_t inst_id) {
   ESP_LOGV(TAG, "Creating service - %s", uuid.to_string().c_str());
   std::shared_ptr<BLEService> service = std::make_shared<BLEService>(uuid, num_handles, inst_id);
   this->services_.emplace_back(service);
@@ -125,7 +124,7 @@ std::shared_ptr<BLEService> FTMSBike::create_service(ESPBTUUID uuid, bool advert
 }
 
 void FTMSBike::gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if,
- esp_ble_gatts_cb_param_t *param) {
+                                    esp_ble_gatts_cb_param_t *param) {
   switch (event) {
     case ESP_GATTS_CONNECT_EVT: {
       ESP_LOGD(TAG, "BLE Client connected");

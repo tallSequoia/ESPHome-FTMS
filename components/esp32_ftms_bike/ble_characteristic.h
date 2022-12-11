@@ -16,7 +16,7 @@
 #include <freertos/semphr.h>
 
 namespace esphome {
-namespace esp32_ble_server {
+namespace esp32_ftms_bike {
 
 using namespace esp32_ble;
 
@@ -93,7 +93,7 @@ class BLECharacteristic {
   } state_{INIT};
 };
 
-}  // namespace esp32_ble_server
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif
