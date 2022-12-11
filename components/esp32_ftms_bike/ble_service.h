@@ -16,7 +16,7 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
-class BLEServer;
+class FTMSBike;
 
 using namespace esp32_ble;
 
@@ -35,9 +35,9 @@ class BLEService {
   BLECharacteristic *get_last_created_characteristic() { return this->last_created_characteristic_; }
   uint16_t get_handle() { return this->handle_; }
 
-  BLEServer *get_server() { return this->server_; }
+  FTMSBike *get_server() { return this->server_; }
 
-  void do_create(BLEServer *server);
+  void do_create(FTMSBike *server);
   void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
 
   void start();
@@ -53,7 +53,7 @@ class BLEService {
   std::vector<BLECharacteristic *> characteristics_;
   BLECharacteristic *last_created_characteristic_{nullptr};
   uint32_t created_characteristic_count_{0};
-  BLEServer *server_;
+  FTMSBike *server_;
   ESPBTUUID uuid_;
   uint16_t num_handles_;
   uint16_t handle_{0xFFFF};

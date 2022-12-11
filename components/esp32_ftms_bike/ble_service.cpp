@@ -1,5 +1,5 @@
 #include "ble_service.h"
-#include "ble_server.h"
+#include "esp32_ftms_bike.h"
 #include "esphome/core/log.h"
 
 #ifdef USE_ESP32
@@ -41,7 +41,7 @@ BLECharacteristic *BLEService::create_characteristic(ESPBTUUID uuid, esp_gatt_ch
   return characteristic;
 }
 
-void BLEService::do_create(BLEServer *server) {
+void BLEService::do_create(FTMSBike *server) {
   this->server_ = server;
 
   esp_gatt_srvc_id_t srvc_id;
