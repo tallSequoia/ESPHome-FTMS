@@ -89,7 +89,7 @@ class FTMSBike : public Component {
    } state_{INIT};
 };
 
- // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 extern FTMSBike *global_ftms_bike;
 
 }  // namespace esp32_ftms_bike
