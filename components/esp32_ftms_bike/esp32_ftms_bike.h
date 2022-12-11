@@ -1,7 +1,7 @@
 #pragma once
 
-#include "esphome/components/esp32_server/ble_service.h"
-#include "esphome/components/esp32_server/ble_characteristic.h"
+#include "esphome/components/esp32_ble_server/ble_service.h"
+#include "esphome/components/esp32_ble_server/ble_characteristic.h"
 
 #include "esphome/components/esp32_ble/ble_advertising.h"
 #include "esphome/components/esp32_ble/ble_uuid.h"
