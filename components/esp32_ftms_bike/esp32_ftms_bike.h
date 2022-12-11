@@ -41,6 +41,19 @@ class FTMSBike : public Component {
 
    void teardown();
 
+  bool has_server() {
+#ifdef USE_ESP32_BLE_SERVER
+    return this->server_ != nullptr;
+#else
+    return false;
+#endif
+  }
+  bool has_client() { return false; }
+
+#ifdef USE_ESP32_BLE_SERVER
+  void set_server(esp32_ftms_bike::FTMSBike *server) { this->server_ = server; }
+#endif
+
    void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
    void set_model(const std::string &model) { this->model_ = model; }
 
@@ -80,6 +93,10 @@ class FTMSBike : public Component {
    std::shared_ptr<BLEService> device_information_service_;
 
    std::vector<BLEServiceComponent *> service_components_;
+
+#ifdef USE_ESP32_BLE_SERVER
+  esp32_ftms_bike::FTMSBike *server_{nullptr};
+#endif
 
    enum State : uint8_t {
      INIT = 0x00,
