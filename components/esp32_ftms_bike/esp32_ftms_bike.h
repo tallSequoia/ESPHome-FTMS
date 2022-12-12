@@ -11,9 +11,11 @@ namespace esp32_ftms_bike {
 
 //using namespace esp32_ble;
 
-class FTMSBike : public esp32_ble_server {
-
-
+class FTMSBike : public BLEServer {
+ 
+  protected:
+   std::vector<sensor::Sensor *> sensors_;
+ };
 }
 
 }  // namespace esp32_ftms_bike
