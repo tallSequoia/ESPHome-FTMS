@@ -1,8 +1,5 @@
 #pragma once
 
-#include "ble_service.h"
-#include "ble_characteristic.h"
-
 #include "esphome/components/esp32_ble/ble_advertising.h"
 #include "esphome/components/esp32_ble/ble_uuid.h"
 #include "esphome/components/esp32_ble/queue.h"
