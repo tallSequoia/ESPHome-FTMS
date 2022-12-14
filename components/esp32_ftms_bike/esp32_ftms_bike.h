@@ -17,7 +17,9 @@ namespace esp32_ftms_bike {
 //using namespace esp32_ble_server;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
-
+  public:
+    void setup();
+    void loop();
 };
 
 
