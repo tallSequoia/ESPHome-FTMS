@@ -14,7 +14,7 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
-//using namespace esp32_ble_server;
+using namespace esp32_ble;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
