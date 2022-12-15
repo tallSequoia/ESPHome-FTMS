@@ -14,6 +14,8 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
+//using namespace esp32_ble_server;
+
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
     void setup();
@@ -26,10 +28,10 @@ class FTMSBike : public esp32_ble_server::BLEServer {
 
     bool can_proceed();
 
-    std::shared_ptr<BLEService> create_service(const uint8_t *uuid, bool advertise = false);
-    std::shared_ptr<BLEService> create_service(uint16_t uuid, bool advertise = false);
-    std::shared_ptr<BLEService> create_service(const std::string &uuid, bool advertise = false);
-    std::shared_ptr<BLEService> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15, uint8_t inst_id = 0);
+    std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
+    std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
+    std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
+    std::shared_ptr<FTMSBike> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15, uint8_t inst_id = 0);
 
     uint32_t get_connected_client_count();
 
@@ -38,6 +40,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
 
     void register_service_component(BLEServiceComponent *component);
 };
+
 
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
