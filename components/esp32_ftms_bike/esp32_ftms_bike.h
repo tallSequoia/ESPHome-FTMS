@@ -18,8 +18,8 @@ using namespace esp32_ble;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
-    Machine() {}  // Constructor with empty body
-    virtual ~Machine() {}  // Empty virtual destructor
+    FTMSBike() {}  // Constructor with empty body
+    virtual ~FTMSBike() {}  // Empty virtual destructor
 
     void setup();
     void loop();
