@@ -14,7 +14,7 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
-//using namespace esp32_ble;
+using namespace esp32_ble_server;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
@@ -38,7 +38,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     esp_gatt_if_t get_gatts_if();
     void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
 
-    void register_service_component(esp32_ble_server::BLEServiceComponent *component);
+    void register_service_component(BLEServiceComponent *component);
 };
 
 
