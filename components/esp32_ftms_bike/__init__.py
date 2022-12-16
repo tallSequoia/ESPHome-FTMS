@@ -30,7 +30,6 @@ CONFIG_SCHEMA = cv.Schema(
     }
 ).extend(cv.COMPONENT_SCHEMA)
 
-
 async def to_code(config):
     parent = await cg.get_variable(config[CONF_BLE_ID])
     var = cg.new_Pvariable(config[CONF_ID])
