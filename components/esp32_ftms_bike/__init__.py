@@ -14,7 +14,7 @@ CODEOWNERS = ["@tallsequoia"]
 CONF_MANUFACTURER = "manufacturer"
 CONF_BLE_ID = "ble_id"
 
-esp32_ftms_bike_ns = cg.general_ns.namespace("esp32_ftms_bike")
+esp32_ftms_bike_ns = cg.global_ns.namespace("esp32_ftms_bike")
 FTMSBike = esp32_ftms_bike_ns.class_("FTMSBike", cg.Component)
 
 esp32_ble_server_ns = cg.esphome_ns.namespace("esp32_ble_server")
