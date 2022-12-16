@@ -18,8 +18,9 @@
 
 using namespace esphome;
 using namespace esp32_ble_server;
+namespace esp32_ftms_bike {
 
-class FTMSBike : public BLEServer {
+class FTMSBike : public BLEServer { //public BLEServer {
   public:
     void setup();
     void loop();
