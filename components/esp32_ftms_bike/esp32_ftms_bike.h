@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
+#include "esphome/core/defines.h"
 
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/esp32_ble/ble_advertising.h"
