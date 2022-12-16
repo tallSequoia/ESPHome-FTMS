@@ -3,7 +3,6 @@
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
-//#include "esphome/core/defines.h"
 
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/esp32_ble/ble_advertising.h"
@@ -19,9 +18,6 @@
 
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
-
-
-#ifdef USE_ESP32
 
 namespace esphome {
 namespace esp32_ftms_bike {
