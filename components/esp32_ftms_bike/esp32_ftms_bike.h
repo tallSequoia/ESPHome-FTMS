@@ -18,8 +18,8 @@ using namespace esp32_ble;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
-    FTMSBike() {}  // Constructor with empty body
-    virtual ~FTMSBike() {}  // Empty virtual destructor
+//    FTMSBike() {}  // Constructor with empty body
+//    virtual ~FTMSBike() {}  // Empty virtual destructor
 
     void setup();
     void loop();
@@ -37,6 +37,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     std::shared_ptr<FTMSBike> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15,
      uint8_t inst_id = 0);
 
+    // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     esp_gatt_if_t get_gatts_if() { return this->gatts_if_; }
     uint32_t get_connected_client_count() { return this->connected_clients_; }
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
