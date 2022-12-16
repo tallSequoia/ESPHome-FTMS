@@ -21,7 +21,7 @@
 //namespace esphome {
 namespace esp32_ftms_bike {
 
-using namespace esp32_ble;
+using namespace esphome::esp32_ble;
 
 class FTMSBike : public esp32_ble_server::BLEServer {
   public:
@@ -30,6 +30,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     void dump_config();
     void teardown();
 
+    // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
 
