@@ -11,19 +11,16 @@
 #include "esphome/components/esp32_ble/ble_uuid.h"
 #include "esphome/components/esp32_ble/queue.h"
 
-//#include <map>
-//#include <memory>
-//#include <vector>
-
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
 //namespace esphome {
 namespace esp32_ftms_bike {
 
+using namespace esphome;
 using namespace esphome::esp32_ble;
 
-class FTMSBike : public esp32_ble_server::BLEServer {
+class FTMSBike : public esphome::esp32_ble_server::BLEServer {
   public:
     void setup();
     void loop();
