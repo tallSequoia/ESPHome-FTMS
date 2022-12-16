@@ -1,26 +1,28 @@
 #pragma once
 
+#include <vector>
+
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
 
-#ifdef USE_ESP32
-
 #include "esphome/components/esp32_ble_server/ble_server.h"
+#include "esphome/components/esp32_ble_server/ble_characteristic.h"
 #include "esphome/components/esp32_ble/ble_advertising.h"
 #include "esphome/components/esp32_ble/ble_uuid.h"
 #include "esphome/components/esp32_ble/queue.h"
-
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
-//namespace esphome {
-namespace esp32_ftms_bike {
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/output/binary_output.h"
+
+#ifdef USE_ESP32
 
 using namespace esphome;
-using namespace esphome::esp32_ble;
+using namespace esp32_ble_server;
 
-class FTMSBike : public esphome::esp32_ble_server::BLEServer {
+class FTMSBike : public Component, public BLEServiceComponent { //public esp32_ble_server::BLEServer {
   public:
     void setup();
     void loop();
@@ -44,7 +46,7 @@ class FTMSBike : public esphome::esp32_ble_server::BLEServer {
     uint32_t get_connected_client_count() { return this->connected_clients_; }
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
-    void register_service_component(esp32_ble_server::BLEServiceComponent *component);
+    void register_service_component(BLEServiceComponent *component);
 };
 
 }  // namespace esp32_ftms_bike
