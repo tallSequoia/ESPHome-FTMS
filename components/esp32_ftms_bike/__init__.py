@@ -2,27 +2,30 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.const import CONF_ID, CONF_MODEL
 from esphome.components import esp32_ble
+from esphome.components import esp32_ble_server
 from esphome.core import CORE
 from esphome.components.esp32 import add_idf_sdkconfig_option
 
-AUTO_LOAD = ["esp32_ble_server"]        # "esp32_ble", 
-CODEOWNERS = ["@tallsequoia"]
+AUTO_LOAD = ["esp32_ble_server","esp32_ble"] 
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
 DEPENDENCIES = ["esp32"]
+CODEOWNERS = ["@tallsequoia"]
 
 CONF_MANUFACTURER = "manufacturer"
 CONF_BLE_ID = "ble_id"
 
-esp32_ftms_bike_ns = cg.esphome_ns.namespace("esp32_ftms_bike")
+esp32_ftms_bike_ns = cg.general_ns.namespace("esp32_ftms_bike")
 FTMSBike = esp32_ftms_bike_ns.class_("FTMSBike", cg.Component)
-BLEServiceComponent = esp32_ftms_bike_ns.class_("BLEServiceComponent")
+
+esp32_ble_server_ns = cg.esphome_ns.namespace("esp32_ble_server")
+BLEServiceComponent = esp32_ble_server_ns.class_("BLEServiceComponent")
 
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(FTMSBike),
         cv.GenerateID(CONF_BLE_ID): cv.use_id(esp32_ble.ESP32BLE),
-        cv.Optional(CONF_MANUFACTURER, default="ESPHome"): cv.string,
+        cv.Optional(CONF_MANUFACTURER, default="TallSequoia"): cv.string,
         cv.Optional(CONF_MODEL): cv.string,
     }
 ).extend(cv.COMPONENT_SCHEMA)
