@@ -20,8 +20,8 @@
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
-namespace esphome {
-namespace esp32_ftms_bike {
+//namespace esphome {
+//namespace esp32_ftms_bike {
 
 using namespace esp32_ble;
 
@@ -52,7 +52,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
 };
 
 
-}  // namespace esp32_ftms_bike
-}  // namespace esphome
+//}  // namespace esp32_ftms_bike
+//}  // namespace esphome
 
 #endif
