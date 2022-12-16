@@ -19,7 +19,7 @@
 using namespace esphome;
 using namespace esp32_ble_server;
 
-class FTMSBike : public Component, public BLEServiceComponent { //public esp32_ble_server::BLEServer {
+class FTMSBike : public Component, public BLEServer { //public BLEServer {
   public:
     void setup();
     void loop();
@@ -27,8 +27,8 @@ class FTMSBike : public Component, public BLEServiceComponent { //public esp32_b
     void teardown();
 
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
-    void set_manufacturer(const std::string &manufacturer);// { this->manufacturer_ = manufacturer; }
-    void set_model(const std::string &model);// { this->model_ = model; }
+    void set_manufacturer(const std::string &manufacturer);   // { this->manufacturer_ = manufacturer; }
+    void set_model(const std::string &model);   // { this->model_ = model; }
 
     bool can_proceed();
 
@@ -38,9 +38,9 @@ class FTMSBike : public Component, public BLEServiceComponent { //public esp32_b
     std::shared_ptr<FTMSBike> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15, uint8_t inst_id = 0);
 
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
-    esp_gatt_if_t get_gatts_if(); // { return this->gatts_if_; }
-    uint32_t get_connected_client_count(); // { return this->connected_clients_; }
-    const std::map<uint16_t, void *> &get_clients(); // { return this->clients_; }
+    esp_gatt_if_t get_gatts_if();   // { return this->gatts_if_; }
+    uint32_t get_connected_client_count();  // { return this->connected_clients_; }
+    const std::map<uint16_t, void *> &get_clients();  // { return this->clients_; }
 
     void register_service_component(BLEServiceComponent *component);
 };
