@@ -26,8 +26,8 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     void dump_config();
     void teardown();
 
-    void set_manufacturer(const std::string &manufacturer);
-    void set_model(const std::string &model);
+    void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
+    void set_model(const std::string &model) { this->model_ = model; }
 
     bool can_proceed();
 
@@ -37,10 +37,9 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     std::shared_ptr<FTMSBike> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15,
      uint8_t inst_id = 0);
 
-    uint32_t get_connected_client_count();
-
-    esp_gatt_if_t get_gatts_if();
-    void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
+    esp_gatt_if_t get_gatts_if() { return this->gatts_if_; }
+    uint32_t get_connected_client_count() { return this->connected_clients_; }
+    const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
     void register_service_component(esp32_ble_server::BLEServiceComponent *component);
 };
