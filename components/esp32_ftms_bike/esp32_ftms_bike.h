@@ -39,7 +39,7 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     void set_model(const std::string &model) { this->model_ = model; }
 
     bool can_proceed();
-/*
+
     std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
@@ -52,7 +52,6 @@ class FTMSBike : public esp32_ble_server::BLEServer {
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
     void register_service_component(esp32_ble_server::BLEServiceComponent *component);
-*/
 };
 
 
