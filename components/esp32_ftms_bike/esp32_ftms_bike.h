@@ -14,9 +14,6 @@
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
-#include "esphome/components/binary_sensor/binary_sensor.h"
-#include "esphome/components/output/binary_output.h"
-
 #ifdef USE_ESP32
 
 using namespace esphome;
