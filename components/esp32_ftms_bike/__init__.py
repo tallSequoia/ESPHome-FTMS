@@ -6,7 +6,7 @@ from esphome.components import esp32_ble_server
 from esphome.core import CORE
 from esphome.components.esp32 import add_idf_sdkconfig_option
 
-AUTO_LOAD = ["esp32_ble_server"]   # ,"esp32_ble"] 
+AUTO_LOAD = ["esp32_ble_server","esp32_ble"] 
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
 DEPENDENCIES = ["esp32"]
 CODEOWNERS = ["@tallsequoia"]
@@ -24,7 +24,7 @@ BLEServiceComponent = esp32_ble_server_ns.class_("BLEServiceComponent")
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(FTMSBike),
-        cv.GenerateID(CONF_BLE_ID): cv.declare_id(esp32_ble_server.BLEServer),  # cv.use_id(esp32_ftms_bike_ns.FTMSBike), # cv.use_id(esp32_ble_server.BLEServer), # cv.use_id(esp32_ble.ESP32BLE),
+        cv.GenerateID(CONF_BLE_ID): cv.declare_id(esp32_ble.ESP32BLE),  # cv.use_id(esp32_ftms_bike_ns.FTMSBike), # cv.use_id(esp32_ble_server.BLEServer), # cv.use_id(esp32_ble.ESP32BLE),
         cv.Optional(CONF_MANUFACTURER, default="TallSequoia"): cv.string,
         cv.Optional(CONF_MODEL): cv.string,
     }
