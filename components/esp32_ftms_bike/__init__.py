@@ -41,7 +41,7 @@ async def to_code(config):
         cg.add(var.set_model(config[CONF_MODEL]))
     cg.add_define("USE_ESP32_BLE_SERVER")
 
-    cg.add(parent.set_server(var))
+//    cg.add(parent.set_server(var))
 
     if CORE.using_esp_idf:
         add_idf_sdkconfig_option("CONFIG_BT_ENABLED", True)
