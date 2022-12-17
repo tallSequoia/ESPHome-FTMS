@@ -5,6 +5,7 @@
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
+#include "esphome/core/defines.h"
 
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/esp32_ble_server/ble_characteristic.h"
@@ -20,13 +21,13 @@ using namespace esphome;
 using namespace esp32_ble_server;
 namespace esp32_ftms_bike {
 
-class FTMSBike : public BLEServer { //public BLEServer {
+class FTMSBike : public BLEServer {
   public:
     void setup();
     void loop();
     void dump_config();
     void teardown();
-
+/*
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
@@ -44,6 +45,7 @@ class FTMSBike : public BLEServer { //public BLEServer {
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
     void register_service_component(BLEServiceComponent *component);
+*/
 };
 
 }  // namespace esp32_ftms_bike
