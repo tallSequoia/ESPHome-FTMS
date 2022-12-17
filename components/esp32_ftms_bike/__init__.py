@@ -24,6 +24,7 @@ BLEServiceComponent = esp32_ble_server_ns.class_("BLEServiceComponent")
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(FTMSBike),
+        cv.GenerateID(CONF_BLE_ID): cv.declare_id(esp32_ble_server.BLEServer),  # cv.use_id(esp32_ftms_bike_ns.FTMSBike), # cv.use_id(esp32_ble_server.BLEServer), # cv.use_id(esp32_ble.ESP32BLE),
         cv.Optional(CONF_MANUFACTURER, default="TallSequoia"): cv.string,
         cv.Optional(CONF_MODEL): cv.string,
     }
@@ -41,6 +42,7 @@ async def to_code(config):
     cg.add_define("USE_ESP32_BLE_SERVER")
 
 #    cg.add(parent.set_server(var))
+    cg.add(var.set_parent(parent))  # JM add (based on MQTT Subscribe Sensor example setting parent of MQTT Client Component)
 
     if CORE.using_esp_idf:
         add_idf_sdkconfig_option("CONFIG_BT_ENABLED", True)
