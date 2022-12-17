@@ -27,13 +27,13 @@ class FTMSBike : public BLEServer {
     void loop();
     void dump_config();
     void teardown();
-/*
+
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
 
     bool can_proceed();
-
+/*
     std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
