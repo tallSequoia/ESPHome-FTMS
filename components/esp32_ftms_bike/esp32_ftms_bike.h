@@ -21,24 +21,23 @@ using namespace esphome;
 using namespace esp32_ble_server;
 namespace esp32_ftms_bike {
 
-class FTMSBike : public BLEServer {
+class FTMSBike : public esphome::esp32_ble_server::BLEServer {
   public:
     void setup();
     void loop();
     void dump_config();
     void teardown();
 
-    // This from the esp32_BLE as compiler complained about absence of set_server... not sure why
-#ifdef USE_ESP32_BLE_SERVER
-    void set_server(esp32_ble_server::BLEServer *server) { this->server_ = server; }
-#endif
-
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
 
     bool can_proceed();
-/*
+
+    bool has_client() { return false; }
+    bool has_server() { return this->server_ != nullptr; }
+    void set_server(esp32_ble_server::BLEServer *server) { this->server_ = server; }
+  
     std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
@@ -50,7 +49,9 @@ class FTMSBike : public BLEServer {
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
     void register_service_component(BLEServiceComponent *component);
-*/
+
+  protected:
+    esp32_ble_server::BLEServer *server_{nullptr};
 };
 
 }  // namespace esp32_ftms_bike
