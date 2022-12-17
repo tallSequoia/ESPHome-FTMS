@@ -34,15 +34,16 @@ class FTMSBike : public esphome::esp32_ble_server::BLEServer {
 
     bool can_proceed();
 
+ /* 
     bool has_client() { return false; }
     bool has_server() { return this->server_ != nullptr; }
-    void set_server(esp32_ble_server::BLEServer *server) { this->server_ = server; }
-  
+    void set_server(FTMSBike *server) { this->server_ = server; }
+
     std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(ESPBTUUID uuid, bool advertise = false, uint16_t num_handles = 15, uint8_t inst_id = 0);
-
+*/
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     esp_gatt_if_t get_gatts_if() { return this->gatts_if_; }
     uint32_t get_connected_client_count() { return this->connected_clients_; }
@@ -51,7 +52,7 @@ class FTMSBike : public esphome::esp32_ble_server::BLEServer {
     void register_service_component(BLEServiceComponent *component);
 
   protected:
-    esp32_ble_server::BLEServer *server_ { nullptr };
+    FTMSBike *server_ { nullptr };
 };
 
 }  // namespace esp32_ftms_bike
