@@ -28,6 +28,11 @@ class FTMSBike : public BLEServer {
     void dump_config();
     void teardown();
 
+    // This from the esp32_BLE as compiler complained about absence of set_server... not sure why
+#ifdef USE_ESP32_BLE_SERVER
+    void set_server(esp32_ble_server::BLEServer *server) { this->server_ = server; }
+#endif
+
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
