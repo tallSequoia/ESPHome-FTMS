@@ -51,7 +51,7 @@ class FTMSBike : public esphome::esp32_ble_server::BLEServer {
     void register_service_component(BLEServiceComponent *component);
 
   protected:
-    esp32_ble_server::BLEServer *server_{nullptr};
+    esp32_ble_server::BLEServer *server_ { nullptr };
 };
 
 }  // namespace esp32_ftms_bike
