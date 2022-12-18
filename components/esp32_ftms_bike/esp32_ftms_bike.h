@@ -14,5 +14,3 @@ class FTMSBike : public Component {
 
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
-
-#endif
