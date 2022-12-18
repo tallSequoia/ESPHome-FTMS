@@ -3,16 +3,16 @@
 #include "esphome/core/component.h"
 
 namespace esphome {
-namespace empty_component {
+namespace esp32_ftms_bike {
 
-class EmptyComponent : public Component {
+class FTMSBike : public Component {
  public:
   void setup() override;
   void loop() override;
   void dump_config() override;
 };
 
-}  // namespace empty_component
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
 
 #endif
