@@ -1,23 +1,22 @@
 #include "esphome/core/log.h"
-#include "empty_component.h"
+#include "esp32_ftms_bike.h"
 
 namespace esphome {
-namespace empty_component {
+namespace esp32_ftms_bike {
 
-static const char *TAG = "ftms_component.component";
+static const char *TAG = "esp32_ftms_bike.component";
 
-void EmptyComponent::setup() {
+void FTMSBike::setup() {
   ESP_LOGD(TAG, "FTMS component");
 }
 
-void EmptyComponent::loop() {
+void FTMSBike::loop() {
 
 }
 
-void EmptyComponent::dump_config(){
+void FTMSBike::dump_config(){
   ESP_LOGCONFIG(TAG, "FTMS component");
 }
 
-
-}  // namespace empty_component
+}  // namespace esp32_ftms_bike
 }  // namespace esphome
