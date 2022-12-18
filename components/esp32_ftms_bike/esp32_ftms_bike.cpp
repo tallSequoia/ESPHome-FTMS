@@ -1,18 +1,23 @@
-#include "esp32_ftms_bike.h"
-
-#include "esphome/components/esp32_ble/ble.h"
 #include "esphome/core/log.h"
-#include "esphome/core/application.h"
-#include "esphome/core/version.h"
+#include "empty_component.h"
 
-#ifdef USE_ESP32
+namespace esphome {
+namespace empty_component {
 
-//namespace esphome {
-namespace esp32_ftms_bike {
+static const char *TAG = "ftms_component.component";
 
-static const char *const TAG = "esp32_ftms_bike";
+void EmptyComponent::setup() {
+  ESP_LOGD(TAG, "FTMS component");
+}
 
-}  // namespace esp32_ftms_bike
-//}  // namespace esphome
+void EmptyComponent::loop() {
 
-#endif
+}
+
+void EmptyComponent::dump_config(){
+  ESP_LOGCONFIG(TAG, "FTMS component");
+}
+
+
+}  // namespace empty_component
+}  // namespace esphome
