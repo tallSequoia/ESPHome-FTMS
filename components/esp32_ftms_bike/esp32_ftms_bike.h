@@ -9,6 +9,6 @@ namespace esphome {
     void setup() override;
     void loop() override;
     void dump_config() override;
-  }
+  };
  }  // namespace esp32_ftms_bike
 }  // namespace esphome
