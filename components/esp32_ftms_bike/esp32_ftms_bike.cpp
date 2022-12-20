@@ -161,7 +161,7 @@ void dump_config() { ESP_LOGCONFIG(TAG, "ESP32 FTMS Server:"); }
 
 FTMSBike *ftms_bike = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
-}
+};
   
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
