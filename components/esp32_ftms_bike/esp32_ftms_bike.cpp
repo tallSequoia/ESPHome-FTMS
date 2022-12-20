@@ -17,6 +17,8 @@
 
 namespace esphome {
 namespace esp32_ftms_bike {
+  
+class FTMSBike {
 
 static const char *const TAG = "esp32_ftms_bike";
 
@@ -159,6 +161,8 @@ void dump_config() { ESP_LOGCONFIG(TAG, "ESP32 FTMS Server:"); }
 
 FTMSBike *ftms_bike = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
+}
+  
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
 
