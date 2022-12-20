@@ -15,8 +15,6 @@
 #include <esp_gap_ble_api.h>
 
 
-using esp32_ble_server;
-
 namespace esphome {
 namespace esp32_ftms_bike {
 
