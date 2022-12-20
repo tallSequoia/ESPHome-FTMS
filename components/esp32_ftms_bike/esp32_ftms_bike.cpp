@@ -39,35 +39,35 @@ void setup() {
 
 void loop() {
   switch (this->state_) {
-    case RUNNING:
+    case BLEServer::RUNNING:
       return;
 
-    case INIT: {
+    case BLEServer::INIT: {
       esp_err_t err = esp_ble_gatts_app_register(0);
       if (err != ESP_OK) {
         ESP_LOGE(TAG, "esp_ble_gatts_app_register failed: %d", err);
         this->mark_failed();
         return;
       }
-      this->state_ = REGISTERING;
+      this->state_ = BLEServer::REGISTERING;
       break;
     }
-    case REGISTERING: {
+    case BLEServer::REGISTERING: {
       if (this->registered_) {
         this->device_information_service_ = this->create_service(DEVICE_INFORMATION_SERVICE_UUID);
 
         this->create_device_characteristics_();
 
-        this->state_ = STARTING_SERVICE;
+        this->state_ = BLEServer::STARTING_SERVICE;
       }
       break;
     }
-    case STARTING_SERVICE: {
+    case BLEServer::STARTING_SERVICE: {
       if (!this->device_information_service_->is_created()) {
         break;
       }
       if (this->device_information_service_->is_running()) {
-        this->state_ = RUNNING;
+        this->state_ = BLEServer::RUNNING;
         this->can_proceed_ = true;
         ESP_LOGD(TAG, "BLE server setup successfully");
       } else if (!this->device_information_service_->is_starting()) {
