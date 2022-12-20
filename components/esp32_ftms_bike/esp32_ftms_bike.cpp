@@ -5,11 +5,14 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
 
-#include <BLEDevice.h>
-#include <BLEUtils.h>
-#include <BLEServer.h>
-#include <BLE2902.h>
 #include <math.h>
+#include <nvs_flash.h>
+#include <freertos/FreeRTOSConfig.h>
+#include <esp_bt_main.h>
+#include <esp_bt.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <esp_gap_ble_api.h>
 
 
 // See the following for generating UUIDs: https://www.uuidgenerator.net/
@@ -26,7 +29,6 @@
 #define ELEVATION 100           // m above sea level
 
 #define JOULE_TO_KCAL 0.238902957619
-
 
 
 namespace esphome {
