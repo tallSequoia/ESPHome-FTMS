@@ -18,6 +18,8 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
+using esphome::esp32_ble_server;
+  
 static const char *const TAG = "esp32_ftms_bike";
 
 static const uint16_t DEVICE_INFORMATION_SERVICE_UUID = 0x180A;
@@ -39,35 +41,35 @@ void setup() {
 
 void loop() {
   switch (this->state_) {
-    case BLEServer::RUNNING:
+    case RUNNING:
       return;
 
-    case BLEServer::INIT: {
+    case INIT: {
       esp_err_t err = esp_ble_gatts_app_register(0);
       if (err != ESP_OK) {
         ESP_LOGE(TAG, "esp_ble_gatts_app_register failed: %d", err);
         this->mark_failed();
         return;
       }
-      this->state_ = BLEServer::REGISTERING;
+      this->state_ = REGISTERING;
       break;
     }
-    case BLEServer::REGISTERING: {
+    case REGISTERING: {
       if (this->registered_) {
         this->device_information_service_ = this->create_service(DEVICE_INFORMATION_SERVICE_UUID);
 
         this->create_device_characteristics_();
 
-        this->state_ = BLEServer::STARTING_SERVICE;
+        this->state_ = STARTING_SERVICE;
       }
       break;
     }
-    case BLEServer::STARTING_SERVICE: {
+    case STARTING_SERVICE: {
       if (!this->device_information_service_->is_created()) {
         break;
       }
       if (this->device_information_service_->is_running()) {
-        this->state_ = BLEServer::RUNNING;
+        this->state_ = RUNNING;
         this->can_proceed_ = true;
         ESP_LOGD(TAG, "BLE server setup successfully");
       } else if (!this->device_information_service_->is_starting()) {
