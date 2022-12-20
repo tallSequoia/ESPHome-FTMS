@@ -27,9 +27,9 @@ namespace esp32_ftms_bike {
       void loop();
       void dump_config();
       void teardown();
-      void update() {};
+      void update() {};   // This is needed for esp-idf
 
-      void set_parent(esphome::esp32_ble_server *parent) { parent_ = parent; }
+      void set_parent(esphome::esp32_ble_server::BLEServer *parent) { parent_ = parent; }
 
       // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
       void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
@@ -50,7 +50,7 @@ namespace esp32_ftms_bike {
       void register_service_component(BLEServiceComponent *component);
 
     protected:
-      esphome::esp32_ble_server *parent_;
+      esphome::esp32_ble_server::BLEServer *parent_;
   };
 
 }  // namespace esp32_ftms_bike
