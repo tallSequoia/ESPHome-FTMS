@@ -15,11 +15,11 @@
 #include <esp_gap_ble_api.h>
 
 
+using esp32_ble_server;
+
 namespace esphome {
 namespace esp32_ftms_bike {
 
-using esphome::esp32_ble_server;
-  
 static const char *const TAG = "esp32_ftms_bike";
 
 static const uint16_t DEVICE_INFORMATION_SERVICE_UUID = 0x180A;
