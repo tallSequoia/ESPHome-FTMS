@@ -17,9 +17,9 @@
 
 #ifdef USE_ESP32
 
-using namespace esphome;
 using namespace esp32_ble_server;
 
+namespace esphome {
 namespace esp32_ftms_bike {
   class FTMSBike : public esphome::esp32_ble_server::BLEServer {
     public:
@@ -54,6 +54,6 @@ namespace esp32_ftms_bike {
   };
 
 }  // namespace esp32_ftms_bike
-//}  // namespace esphome
+}  // namespace esphome
 
 #endif
