@@ -27,7 +27,7 @@ static const uint16_t MANUFACTURER_UUID = 0x2A29;
 
 
 void setup() {
-  if (this->is_failed()) {
+  if (parent_->is_failed()) {
     ESP_LOGE(TAG, "BLE Server was marked failed by ESP32BLE");
     return;
   }
@@ -38,7 +38,7 @@ void setup() {
 }
 
 void loop() {
-  switch (this->state_) {
+  switch (parent_->state_) {
     case RUNNING:
       return;
 
@@ -49,16 +49,16 @@ void loop() {
         this->mark_failed();
         return;
       }
-      this->state_ = REGISTERING;
+      parent_->state_ = REGISTERING;
       break;
     }
     case REGISTERING: {
-      if (this->registered_) {
+      if (parent_->registered_) {
         this->device_information_service_ = this->create_service(DEVICE_INFORMATION_SERVICE_UUID);
 
         this->create_device_characteristics_();
 
-        this->state_ = STARTING_SERVICE;
+        parent_->state_ = STARTING_SERVICE;
       }
       break;
     }
@@ -67,7 +67,7 @@ void loop() {
         break;
       }
       if (this->device_information_service_->is_running()) {
-        this->state_ = RUNNING;
+        parent_->state_ = RUNNING;
         this->can_proceed_ = true;
         ESP_LOGD(TAG, "BLE server setup successfully");
       } else if (!this->device_information_service_->is_starting()) {
