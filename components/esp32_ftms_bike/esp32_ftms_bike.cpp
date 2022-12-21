@@ -24,6 +24,7 @@ namespace esp32_ftms_bike {
 
 static const char *const TAG = "esp32_ftms_bike";
 
+
 class FTMSBike {
 
     void setup() {
@@ -45,8 +46,8 @@ class FTMSBike {
 
     void on_client_disconnect() {}
 
-    float get_setup_priority() {}
 };
+
 
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
