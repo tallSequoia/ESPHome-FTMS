@@ -6,7 +6,6 @@ from esphome.core import CORE
 from esphome.components.esp32 import add_idf_sdkconfig_option
 
 AUTO_LOAD = ["binary_sensor", "output", "esp32_ble_server"]
-#AUTO_LOAD = ["esp32_ble", "esp32_ble_server", AUTO_LOAD = ["binary_sensor", "output", "esp32_ble_server"]]
 CODEOWNERS = ["@tallsequoia"]
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
 DEPENDENCIES = ["esp32"]
@@ -14,16 +13,16 @@ DEPENDENCIES = ["esp32"]
 CONF_MANUFACTURER = "manufacturer"
 CONF_BLE_ID = "ble_id"
 
-esp32_ble_server_ns = cg.esphome_ns.namespace("esp32_ble_server")
-BLEServer = esp32_ble_server_ns.class_("BLEServer", cg.Component)
-BLEServiceComponent = esp32_ble_server_ns.class_("BLEServiceComponent")
+esp32_ftms_bike_ns = cg.esphome_ns.namespace("esp32_ftms_bike")
+BLEServer = esp32_ftms_bike_ns.class_("BLEServer", cg.Component)
+BLEServiceComponent = esp32_ftms_bike_ns.class_("BLEServiceComponent")
 
 
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(): cv.declare_id(BLEServer),
         cv.GenerateID(CONF_BLE_ID): cv.use_id(esp32_ble.ESP32BLE),
-        cv.Optional(CONF_MANUFACTURER, default="ESPHome"): cv.string,
+        cv.Optional(CONF_MANUFACTURER, default="ESP Home"): cv.string,
         cv.Optional(CONF_MODEL): cv.string,
     }
 ).extend(cv.COMPONENT_SCHEMA)
