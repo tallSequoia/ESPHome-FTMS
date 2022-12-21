@@ -18,7 +18,7 @@
 namespace esphome {
 namespace esp32_ftms_bike {
 
-class FTMSBike : public BLEServiceComponent {
+class FTMSBike : public esp32_ble_server::BLEServiceComponent {
   public:
     void setup();
     void loop();
@@ -72,18 +72,10 @@ class FTMSBike : public BLEServiceComponent {
     uint32_t connected_clients_{0};
     std::map<uint16_t, void *> clients_;
 
-    std::vector<std::shared_ptr<BLEService>> services_;
-    std::shared_ptr<BLEService> device_information_service_;
+    std::vector<std::shared_ptr<esp32_ble_server::BLEService>> services_;
+    std::shared_ptr<esp32_ble_server::BLEService> device_information_service_;
 
-    std::vector<BLEServiceComponent *> service_components_;
-/*
-    enum State : uint8_t {
-      INIT = 0x00,
-      REGISTERING,
-      STARTING_SERVICE,
-      RUNNING,
-    } state_{INIT};
-*/
+    std::vector<esp32_ble_server::BLEServiceComponent *> service_components_;
 };
 
 }  // namespace esp32_ftms_bike
