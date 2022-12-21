@@ -29,7 +29,7 @@ static const char *const TAG = "esp32_ftms_bike";
 
 void setup() {
 //  this->service_ = global_ble_server->create_service(improv::SERVICE_UUID, true);
-    setup_characteristics();
+    this->setup_characteristics();
 }
 
 void loop() {}
