@@ -20,9 +20,9 @@
 
 #ifdef USE_ESP32
 
+using namespace esphome;
 using namespace esp32_ble_server;
 
-namespace esphome {
 namespace esp32_ftms_bike {
 
 class FTMSBike : public BLEServiceComponent {
@@ -33,15 +33,21 @@ class FTMSBike : public BLEServiceComponent {
     void teardown();
     void update(){};    // esp-idf needs this, whereas arduino does not
 
-    bool can_proceed();
+//    bool can_proceed();
+
+    void start() override;
+    void stop() override;
 
     void setup_characteristics();
     void on_client_disconnect();
 
+    float get_setup_priority() const override;
+    bool is_active() const { return this->state_ != improv::STATE_STOPPED; }
+
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
     void set_model(const std::string &model) { this->model_ = model; }
-
+/*
     std::shared_ptr<FTMSBike> create_service(const uint8_t *uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(uint16_t uuid, bool advertise = false);
     std::shared_ptr<FTMSBike> create_service(const std::string &uuid, bool advertise = false);
@@ -53,7 +59,7 @@ class FTMSBike : public BLEServiceComponent {
     const std::map<uint16_t, void *> &get_clients() { return this->clients_; }
 
     void register_service_component(BLEServiceComponent *component);
-
+*/
   protected:
     bool create_device_characteristics_();
 
@@ -86,6 +92,6 @@ class FTMSBike : public BLEServiceComponent {
 };
 
 }  // namespace esp32_ftms_bike
-}  // namespace esphome
+//}  // namespace esphome
 
 #endif
