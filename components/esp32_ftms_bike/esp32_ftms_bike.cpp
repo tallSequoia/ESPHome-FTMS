@@ -2,10 +2,16 @@
 
 #ifdef USE_ESP32
 
-#include "esphome/components/esp32_ble/ble.h"
 #include "esphome/core/log.h"
 #include "esphome/core/application.h"
 #include "esphome/core/version.h"
+
+#include "esphome/components/esp32_ble/ble.h"
+#include "esphome/components/esp32_ble_server/ble_server.h"
+#include "esphome/components/esp32_ble_server/ble_characteristic.h"
+
+#include "esphome/components/binary_sensor/binary_sensor.h"
+#include "esphome/components/output/binary_output.h"
 
 #include <nvs_flash.h>
 #include <freertos/FreeRTOSConfig.h>
