@@ -13,7 +13,7 @@
 
 #ifdef USE_ESP32
 
-using namespace esp32_ble_server;
+//using namespace esp32_ble_server;
 
 namespace esphome {
 namespace esp32_ftms_bike {
