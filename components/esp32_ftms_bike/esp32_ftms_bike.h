@@ -7,8 +7,8 @@
 #include "esphome/core/preferences.h"
 #include "esphome/core/defines.h"
 
-//#include "esphome/components/esp32_ble_server/ble_server.h"
-//#include "esphome/components/esp32_ble_server/ble_characteristic.h"
+#include "esphome/components/esp32_ble_server/ble_server.h"
+#include "esphome/components/esp32_ble_server/ble_characteristic.h"
 //#include "esphome/components/esp32_ble/ble_advertising.h"
 //#include "esphome/components/esp32_ble/ble_uuid.h"
 //#include "esphome/components/esp32_ble/queue.h"
