@@ -15,10 +15,6 @@
 #include <esp_gap_ble_api.h>
 
 
-#include "esphome/components/binary_sensor/binary_sensor.h"
-#include "esphome/components/output/binary_output.h"
-
-
 namespace esphome {
 namespace esp32_ftms_bike {
 
