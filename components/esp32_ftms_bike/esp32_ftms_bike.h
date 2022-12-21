@@ -38,11 +38,11 @@ class FTMSBike : public BLEServiceComponent {
     void start() override;
     void stop() override;
 
-    void setup_characteristics();
+    void setup_characteristics() override;
     void on_client_disconnect();
 
-    float get_setup_priority() const override;
-    bool is_active() const { return this->state_ != improv::STATE_STOPPED; }
+//    float get_setup_priority() const override;    - TODO
+//    bool is_active() const { return this->state_ != improv::STATE_STOPPED; }
 
     // JM: I needed to provide the method definition here as it did not inherit from the base, possibly due to being in the header, not the "main" class? Yuck!
     void set_manufacturer(const std::string &manufacturer) { this->manufacturer_ = manufacturer; }
@@ -68,12 +68,13 @@ class FTMSBike : public BLEServiceComponent {
     }
     bool remove_client_(uint16_t conn_id) { return this->clients_.erase(conn_id) > 0; }
 
-    bool can_proceed_{false};
+    bool can_proceed_ { false };
 
     std::string manufacturer_;
     optional<std::string> model_;
+
     esp_gatt_if_t gatts_if_{0};
-    bool registered_{false};
+    bool registered_{ false };
 
     uint32_t connected_clients_{0};
     std::map<uint16_t, void *> clients_;
