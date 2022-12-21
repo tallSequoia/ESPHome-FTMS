@@ -27,28 +27,24 @@ namespace esp32_ftms_bike {
 static const char *const TAG = "esp32_ftms_bike";
 
 
-class FTMSBike {
+void setup() {
+//  this->service_ = global_ble_server->create_service(improv::SERVICE_UUID, true);
+    setup_characteristics();
+}
 
-    void setup() {
-    //  this->service_ = global_ble_server->create_service(improv::SERVICE_UUID, true);
-        setup_characteristics();
-    }
+void loop() {}
 
-    void loop() {}
+void dump_config() {}
 
-    void dump_config() {}
+void teardown() {}
 
-    void teardown() {}
+void start() {}
 
-    void start() {}
+void stop() {}
 
-    void stop() {}
+void setup_characteristics() {}
 
-    void setup_characteristics() {}
-
-    void on_client_disconnect() {}
-
-};
+void on_client_disconnect() {}
 
 
 }  // namespace esp32_ftms_bike
