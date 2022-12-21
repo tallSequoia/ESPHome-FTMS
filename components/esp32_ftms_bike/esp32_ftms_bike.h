@@ -1,7 +1,5 @@
 #pragma once
 
-//#include <vector>
-
 #include "esphome/core/component.h"
 #include "esphome/core/helpers.h"
 #include "esphome/core/preferences.h"
@@ -9,20 +7,15 @@
 
 #include "esphome/components/esp32_ble_server/ble_server.h"
 #include "esphome/components/esp32_ble_server/ble_characteristic.h"
-//#include "esphome/components/esp32_ble/ble_advertising.h"
-//#include "esphome/components/esp32_ble/ble_uuid.h"
-//#include "esphome/components/esp32_ble/queue.h"
-//#include <esp_gap_ble_api.h>
-//#include <esp_gatts_api.h>
 
 #include "esphome/components/binary_sensor/binary_sensor.h"
 #include "esphome/components/output/binary_output.h"
 
 #ifdef USE_ESP32
 
-using namespace esphome;
 using namespace esp32_ble_server;
 
+namespace esphome {
 namespace esp32_ftms_bike {
 
 class FTMSBike : public BLEServiceComponent {
@@ -31,7 +24,7 @@ class FTMSBike : public BLEServiceComponent {
     void loop();
     void dump_config();
     void teardown();
-    void update(){};    // esp-idf needs this, whereas arduino does not
+    void update() {};    // esp-idf needs this, whereas arduino does not
 
 //    bool can_proceed();
 
@@ -83,16 +76,17 @@ class FTMSBike : public BLEServiceComponent {
     std::shared_ptr<BLEService> device_information_service_;
 
     std::vector<BLEServiceComponent *> service_components_;
-
+/*
     enum State : uint8_t {
       INIT = 0x00,
       REGISTERING,
       STARTING_SERVICE,
       RUNNING,
     } state_{INIT};
+*/
 };
 
 }  // namespace esp32_ftms_bike
-//}  // namespace esphome
+}  // namespace esphome
 
 #endif
