@@ -31,16 +31,18 @@ class FTMSBike {
         setup_characteristics();
     }
 
-
-    void setup() {}
     void loop() {}
+
     void dump_config() {}
+
     void teardown() {}
 
     void start() {}
+
     void stop() {}
 
     void setup_characteristics() {}
+
     void on_client_disconnect() {}
 
     float get_setup_priority() {}
