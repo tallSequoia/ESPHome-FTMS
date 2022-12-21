@@ -5,7 +5,8 @@ from esphome.components import esp32_ble
 from esphome.core import CORE
 from esphome.components.esp32 import add_idf_sdkconfig_option
 
-AUTO_LOAD = ["esp32_ble"]
+AUTO_LOAD = ["binary_sensor", "output", "esp32_ble_server"]
+#AUTO_LOAD = ["esp32_ble", "esp32_ble_server", AUTO_LOAD = ["binary_sensor", "output", "esp32_ble_server"]]
 CODEOWNERS = ["@tallsequoia"]
 CONFLICTS_WITH = ["esp32_ble_tracker", "esp32_ble_beacon"]
 DEPENDENCIES = ["esp32"]
