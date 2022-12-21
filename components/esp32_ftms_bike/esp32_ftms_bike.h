@@ -38,7 +38,7 @@ class FTMSBike : public BLEServiceComponent {
     void start() override;
     void stop() override;
 
-    void setup_characteristics() override;
+    void setup_characteristics();
     void on_client_disconnect();
 
 //    float get_setup_priority() const override;    - TODO
