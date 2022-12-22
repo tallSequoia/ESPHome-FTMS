@@ -20,6 +20,8 @@ namespace esp32_ftms_bike {
 
 class FTMSBike : public esp32_ble_server::BLEServiceComponent {
   public:
+    FTMSBike();
+
     void setup();
     void loop();
     void dump_config();
@@ -67,7 +69,7 @@ class FTMSBike : public esp32_ble_server::BLEServiceComponent {
     optional<std::string> model_;
 
     esp_gatt_if_t gatts_if_{0};
-    bool registered_{ false };
+    bool registered_ { false };
 
     uint32_t connected_clients_{0};
     std::map<uint16_t, void *> clients_;
@@ -77,6 +79,10 @@ class FTMSBike : public esp32_ble_server::BLEServiceComponent {
 
     std::vector<esp32_ble_server::BLEServiceComponent *> service_components_;
 };
+
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+extern FTMSBike *global_ftms_bike_component;
+
 
 }  // namespace esp32_ftms_bike
 }  // namespace esphome
