@@ -14,13 +14,13 @@ CONF_MANUFACTURER = "manufacturer"
 CONF_BLE_ID = "ble_id"
 
 esp32_ftms_bike_ns = cg.esphome_ns.namespace("esp32_ftms_bike")
-BLEServer = esp32_ftms_bike_ns.class_("BLEServer", cg.Component)
-BLEServiceComponent = esp32_ftms_bike_ns.class_("BLEServiceComponent")
+FTMSBike = esp32_ftms_bike_ns.class_("FTMSBike", cg.Component)
+#BLEServiceComponent = esp32_ftms_bike_ns.class_("BLEServiceComponent")
 
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.declare_id(BLEServer),
+        cv.GenerateID(): cv.declare_id(FTMSBike),
         cv.GenerateID(CONF_BLE_ID): cv.use_id(esp32_ble.ESP32BLE),
         cv.Optional(CONF_MANUFACTURER, default="ESP Home"): cv.string,
         cv.Optional(CONF_MODEL): cv.string,
