@@ -27,6 +27,9 @@ namespace esp32_ftms_bike {
 static const char *const TAG = "esp32_ftms_bike";
 
 
+FTMSBike::FTMSBike() { global_ftms_bike_component = this; }
+
+
 void FTMSBike::setup() {
 //  this->service_ = global_ble_server->create_service(improv::SERVICE_UUID, true);
     setup_characteristics();
@@ -45,6 +48,10 @@ void FTMSBike::stop() {}
 void FTMSBike::setup_characteristics() {}
 
 void FTMSBike::on_client_disconnect() {}
+
+
+
+FTMSBike *global_ftms_bike_component = nullptr;  // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
 
 }  // namespace esp32_ftms_bike
