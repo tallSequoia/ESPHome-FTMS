@@ -4,8 +4,6 @@
 
 #ifdef USE_ESP32
 
-#define USE_ESP32_BLE_SERVER true
-
 #include "ble_characteristic.h"
 
 #include <map>
