@@ -1,9 +1,8 @@
 #pragma once
 
-#include "ble_service.h"
-
 #ifdef USE_ESP32
 
+#include "ble_service.h"
 #include "ble_characteristic.h"
 
 #include <map>
@@ -20,9 +19,10 @@
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
+
 namespace esphome {
 namespace esp32_ble_erver {
- 
+
 using namespace esp32_ble;
 
 class BLEServiceComponent {
