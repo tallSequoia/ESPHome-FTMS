@@ -38,7 +38,7 @@ async def to_code(config):
         cg.add(var.set_model(config[CONF_MODEL]))
     cg.add_define("USE_esp32_ble_erver")
 
-    cg.add(parent.set_server(var))
+#    cg.add(parent.set_server(var))
 
     if CORE.using_esp_idf:
         add_idf_sdkconfig_option("CONFIG_BT_ENABLED", True)
