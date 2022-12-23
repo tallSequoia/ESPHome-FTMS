@@ -1,4 +1,4 @@
-#include "ble_server.h"
+#include "esphome/components/esp32_ble_erver/ble_server.h"
 
 #include "esphome/components/esp32_ble/ble.h"
 #include "esphome/core/log.h"
@@ -16,6 +16,8 @@
 
 namespace esphome {
 namespace esp32_ble_erver {
+
+// #define USE_ESP32_BLE_SERVER true
 
 static const char *const TAG = "esp32_ble_erver";
 
