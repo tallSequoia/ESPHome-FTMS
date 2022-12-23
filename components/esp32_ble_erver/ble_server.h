@@ -1,6 +1,11 @@
 #pragma once
 
 #include "ble_service.h"
+
+#ifdef USE_ESP32
+
+#define USE_ESP32_BLE_SERVER true
+
 #include "ble_characteristic.h"
 
 #include "esphome/components/esp32_ble/ble_advertising.h"
@@ -14,14 +19,12 @@
 #include <memory>
 #include <vector>
 
-#ifdef USE_ESP32
-
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 
 namespace esphome {
 namespace esp32_ble_erver {
-
+ 
 using namespace esp32_ble;
 
 class BLEServiceComponent {
